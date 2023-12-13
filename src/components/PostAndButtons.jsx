@@ -17,7 +17,8 @@ export default function PostAndButtons({ post }) {
   const router = useRouter();
 
   // Like method
-  async function handleLike() {
+  async function handleLike(e) {
+    e.preventDefault();
     await fetch(`/api/posts/${post.id}/likes`, {
       method: "POST",
       cache: "no-store",
@@ -26,10 +27,12 @@ export default function PostAndButtons({ post }) {
   }
 
   // Comment Reply Section
-  function handleComment() {
+  function handleComment(e) {
+    e.preventDefault();
     setShowComment(true);
   }
-  function handleCommentCancel() {
+  function handleCommentCancel(e) {
+    e.preventDefault();
     setShowComment(false);
     setCommenting("");
   }
@@ -59,7 +62,8 @@ export default function PostAndButtons({ post }) {
   }
 
   // Delete Button
-  async function handleDelete() {
+  async function handleDelete(e) {
+    e.preventDefault();
     await fetch(`/api/posts/${post.id}`, {
       method: "DELETE",
       cache: "no-store",
@@ -68,10 +72,12 @@ export default function PostAndButtons({ post }) {
   }
 
   // Edit Post
-  function handleEdit() {
+  function handleEdit(e) {
+    e.preventDefault();
     setShowPost(false);
   }
   function handlePostCancel(e) {
+    e.preventDefault();
     setShowPost(true);
     setPosting("");
   }
