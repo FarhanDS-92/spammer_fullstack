@@ -40,6 +40,27 @@ export async function PUT(request, response) {
 export async function DELETE(request, response) {
   try {
     const { postId } = response.params;
+
+    const post = await prisma.post.findFirst({
+      where: {
+        id: postId,
+      },
+    });
+
+    if (!post) {
+      return NextResponse.json({
+        success: false,
+        message: "No post with that ID found.",
+      });
+    }
+
+    const deletedPost = await prisma.post.delete({
+      where: {
+        id: postId,
+      },
+    });
+
+    return NextResponse.json({ success: true, post: deletedPost });
   } catch (error) {
     return NextResponse.json({ success: false, error: error.message });
   }
