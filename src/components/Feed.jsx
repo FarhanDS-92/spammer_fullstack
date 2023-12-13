@@ -1,10 +1,8 @@
-import { API_URL } from "@/lib/API_URL.js";
 import PostsAndComments from "./PostsAndComments.jsx";
+import { prisma } from "@/lib/prisma.js";
 
 export default async function Feed() {
-  const res = await fetch(`${API_URL}/api/posts`, { cache: "no-store" });
-  const data = await res.json();
-  const feed = data.posts;
+  const feed = await prisma.post.findMany();
 
   return (
     <div id="feed">

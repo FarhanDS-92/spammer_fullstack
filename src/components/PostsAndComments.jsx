@@ -1,12 +1,12 @@
-import { API_URL } from "@/lib/API_URL.js";
 import PostAndButtons from "./PostAndButtons.jsx";
+import { prisma } from "@/lib/prisma.js";
 
 export default async function PostsAndComments({ post }) {
-  const res = await fetch(`${API_URL}/api/posts/${post.id}/comments`, {
-    cache: "no-store",
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId: post.id,
+    },
   });
-  const data = await res.json();
-  const comments = data.comments;
 
   return (
     <>

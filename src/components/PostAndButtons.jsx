@@ -1,6 +1,5 @@
 "use client";
 
-import { API_URL } from "@/lib/API_URL.js";
 import { useRouter } from "next/navigation.js";
 import { useState } from "react";
 
@@ -19,7 +18,7 @@ export default function PostAndButtons({ post }) {
 
   // Like method
   async function handleLike() {
-    await fetch(`${API_URL}/api/posts/${post.id}/likes`, {
+    await fetch(`/api/posts/${post.id}/likes`, {
       method: "POST",
       cache: "no-store",
     });
@@ -37,7 +36,7 @@ export default function PostAndButtons({ post }) {
   async function handleSubmitComment(e) {
     e.preventDefault();
 
-    const res = await fetch(`${API_URL}/api/posts/${post.id}/comments`, {
+    const res = await fetch(`/api/posts/${post.id}/comments`, {
       method: "POST",
       cache: "no-store",
       headers: {
@@ -61,7 +60,7 @@ export default function PostAndButtons({ post }) {
 
   // Delete Button
   async function handleDelete() {
-    await fetch(`${API_URL}/api/posts/${post.id}`, {
+    await fetch(`/api/posts/${post.id}`, {
       method: "DELETE",
       cache: "no-store",
     });
@@ -79,7 +78,7 @@ export default function PostAndButtons({ post }) {
   async function handleSubmitPost(e) {
     e.preventDefault();
 
-    const res = await fetch(`${API_URL}/api/posts/${post.id}`, {
+    const res = await fetch(`/api/posts/${post.id}`, {
       method: "PUT",
       cache: "no-store",
       headers: {
