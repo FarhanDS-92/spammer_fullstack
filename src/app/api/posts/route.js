@@ -2,7 +2,11 @@ import { prisma } from "@/lib/prisma.js";
 import { NextResponse } from "next/server.js";
 
 export async function GET() {
-  const posts = await prisma.post.findMany();
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
   return NextResponse.json({ success: true, posts });
 }
 
@@ -19,7 +23,7 @@ export async function POST(request, response) {
 
     const findText = await prisma.post.findFirst({ where: { text } });
 
-    if (text) {
+    if (findText) {
       return NextResponse.json({
         success: false,
         error: "Must have a unique post.",

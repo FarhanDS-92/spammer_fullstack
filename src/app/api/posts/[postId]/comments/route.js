@@ -14,7 +14,7 @@ export async function GET(request, response) {
     if (comments.length === 0) {
       return NextResponse.json({
         success: false,
-        message: "No comments in that post.",
+        error: "No comments in that post.",
       });
     }
 

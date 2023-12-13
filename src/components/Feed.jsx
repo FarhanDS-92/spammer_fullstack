@@ -2,9 +2,14 @@ import PostsAndComments from "./PostsAndComments.jsx";
 import { prisma } from "@/lib/prisma.js";
 
 export default async function Feed() {
-  const feed = await prisma.post.findMany();
+  const feed = await prisma.post.findMany({
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
 
-  // hi
+  // console.log(feed);
+
   return (
     <div id="feed">
       {feed.map((post) => {
