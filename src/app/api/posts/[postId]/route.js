@@ -36,3 +36,11 @@ export async function PUT(request, response) {
     return NextResponse.json({ success: false, error: error.message });
   }
 }
+
+export async function DELETE(request, response) {
+  try {
+    const { postId } = response.params;
+  } catch (error) {
+    return NextResponse.json({ success: false, error: error.message });
+  }
+}
