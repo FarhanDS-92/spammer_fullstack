@@ -20,7 +20,7 @@ export default function PostAndButtons({ post }) {
   async function handleLike() {
     await fetch(`/api/posts/${post.id}/likes`, {
       method: "POST",
-      cache: "no-store",
+      // cache: "no-store",
     });
     router.refresh();
   }
