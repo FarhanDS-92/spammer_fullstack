@@ -17,6 +17,15 @@ export async function POST(request, response) {
       });
     }
 
+    const findText = await prisma.post.findFirst({ where: { text } });
+
+    if (text) {
+      return NextResponse.json({
+        success: false,
+        error: "Must have a unique post.",
+      });
+    }
+
     const post = await prisma.post.create({ data: { text } });
 
     return NextResponse.json({ success: true, post });
