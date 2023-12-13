@@ -22,7 +22,7 @@ export default function PostAndButtons({ post }) {
       method: "POST",
       cache: "no-store",
     });
-    // router.refresh();
+    router.refresh();
   }
 
   // Comment Reply Section
