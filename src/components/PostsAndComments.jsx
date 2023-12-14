@@ -1,8 +1,6 @@
 import PostAndButtons from "./PostAndButtons.jsx";
 import { prisma } from "@/lib/prisma.js";
 
-export const dynamic = "force-dynamic";
-
 export default async function PostsAndComments({ post }) {
   const comments = await prisma.comment.findMany({
     where: {
@@ -27,3 +25,4 @@ export default async function PostsAndComments({ post }) {
     </>
   );
 }
+export const dynamic = "force-dynamic";
