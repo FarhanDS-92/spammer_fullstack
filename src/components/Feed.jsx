@@ -18,4 +18,3 @@ export default async function Feed() {
     </div>
   );
 }
-export const dynamic = "force-dynamic";

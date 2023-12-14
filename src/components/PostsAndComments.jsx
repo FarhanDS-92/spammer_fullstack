@@ -25,4 +25,3 @@ export default async function PostsAndComments({ post }) {
     </>
   );
 }
-export const dynamic = "force-dynamic";
